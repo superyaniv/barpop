@@ -1,6 +1,5 @@
 name: Hello world action
 on: push
-
 jobs:
   my-job:
     name: My Job
