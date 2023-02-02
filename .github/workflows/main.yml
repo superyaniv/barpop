@@ -1,11 +1,7 @@
 name: Hello world action
 on: push
-jobs:
-  my-job:
-    name: My Job
-    runs-on: ubuntu-latest
-    steps:
-      - run: 'echo "$GMAP_KEY" | base64'
-        shell: bash
-        env:
-          GMAP_KEY: ${{secrets.GMAPAPI}}
+  steps:
+    - run: 'echo "$GMAP_KEY"'
+      shell: bash
+      env:
+        GMAP_KEY: ${{secrets.GMAPAPI}}
