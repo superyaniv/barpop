@@ -8,6 +8,6 @@ jobs:
     steps:
       - shell: bash
         env:
-          GMAPSECRET: ${{ secrets.GMAPS_API_KEY }}
+          GMAPS_KEY: ${{ secrets.GMAPS_API_KEY }}
         run: |
-              echo "$GMAPSECRET"
+              echo "$env:GMAPS_KEY"
