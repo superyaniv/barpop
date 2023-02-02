@@ -1,11 +1,6 @@
 const fetch = require('axios');
 async function bar_pop(place_id, key) {
 
-    const gmaps = require('@google/maps').createClient({
-        key: key,
-        Promise: Promise
-    });
-
     const format_output = array => {
         return {
             hour: array[0],
@@ -16,13 +11,16 @@ async function bar_pop(place_id, key) {
     const extract_data = html => {
         let str = ['APP_INITIALIZATION_STATE=', 'window.APP_FLAGS'],
             script = html.substring(html.lastIndexOf(str[0]) + str[0].length, html.lastIndexOf(str[1]));
+            // console.log(script)
         let first = eval(script),
             second = eval(first[3][6].replace(")]}'", ""));
+            console.log(second[6][84])
 
-        return second[0][1][0][14][84];
+        return second[6][84];
     };
 
     const process_html = html => {
+        // console.log(html)
         const popular_times = extract_data(html);
 
         if (!popular_times) {
@@ -52,29 +50,40 @@ async function bar_pop(place_id, key) {
 
     };
 
-    const fetch_html = async(url) => {
-        try {
-            const html = await fetch({
-                url: url,
-                headers: {
-                    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36'
-                }
-            });
-            return html.data;
-        }
-        catch (err) {
-            return {status: 'error', message: 'Invalid url'};
-        }
-    };
+
 
     try {
-        const place = await gmaps.place({placeid: place_id}).asPromise();
-        const result = place.json.result;
-        const {name, formatted_address, geometry:{location}} = result;
-        const html = await fetch_html(result.url);
-        return Object.assign({name, formatted_address, location}, process_html(html));
+        // const place = await gmaps.place({placeid: place_id}).asPromise();
+        // const result = place.json.result;
+        // const {name, formatted_address, geometry:{location}} = result;
+        const {Client} = require("@googlemaps/google-maps-services-js");
+        const gmaps = new Client({});
+    
+        gmaps
+            .placeDetails({
+            params: {
+                place_id: place_id,
+                key: key
+            },
+            timeout: 1000 // milliseconds
+            }, fetch)
+            .then(r => {
+                // console.log(r.data)
+                console.log(r.data.result.url)
+                const html = fetch.get(r.data.result.url,{ headers: { 'User-Agent': 'Mozilla/5.0 (X11; CrOS x86_64 8172.45.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.64 Safari/537.36' }  }).then(data => {
+                    console.log(process_html(data.data).week[1])
+                  });
+                // console.log(html)
+                    // return process_html(html);}
+                // console.log(r.data.results[0].elevation);
+            })
+            .catch(e => {
+            console.log(e);
+            });
+        // const html = await fetch_html(result.url);
+        
     } catch (err) {
-        return {status: 'error', message: 'Error: ' + err.json.status || err};
+        return err //return {status: 'error', message: 'Error: ' + err.json.status || err};
     }
 
 
