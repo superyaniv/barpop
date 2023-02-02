@@ -6,7 +6,7 @@ jobs:
     name: My Job
     runs-on: ubuntu-latest
     steps:
-      - name: secrets
+      - shell: bash
         env:
           GMAPS_API_KEY: ${{ secrets.GMAPS_API_KEY }}
         run: |
