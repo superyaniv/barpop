@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
-      - run: ' sed -i "s/KEY/${{secrets.GMAPAPI}}/g" "testkey"'
+      - run: 'ls -la '# sed -i "s/KEY/${{secrets.GMAPAPI}}/g" "testkey"'
         shell: bash
         env:
           GMAP_KEY: ${{secrets.GMAPAPI}}
