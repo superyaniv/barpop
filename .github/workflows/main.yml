@@ -1,4 +1,4 @@
 name: Hello world action
 on: push
-env: # Or as an environment variable
-  super_secret: ${{ secrets.GMAPS_API_KEY }}
+env:
+  GMAPS_API_KEY: ${{ secrets.GMAPS_API_KEY }}
