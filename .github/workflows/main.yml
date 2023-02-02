@@ -9,3 +9,5 @@ jobs:
       - name: secrets
         env:
           GMAPS_API_KEY: ${{ secrets.GMAPS_API_KEY }}
+        run: |
+              example-command "$GMAPS_API_KEY"
