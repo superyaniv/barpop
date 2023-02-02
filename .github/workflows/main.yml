@@ -5,8 +5,7 @@ jobs:
     name: My Job
     runs-on: ubuntu-latest
     steps:
-      - shell: bash
+      - run: 'echo "$SSH_KEY" > key'
+        shell: bash
         env:
-          GMAPS_KEY: ${{ secrets.GMAPAPI }}
-        run: |
-              echo "$GMAPS_KEY" > key
+          SSH_KEY: ${{secrets.GMAPAPI}}
