@@ -1,7 +1,11 @@
 name: Hello world action
 on: push
-  steps:
-    - run: 'echo "$GMAP_KEY"'
-      shell: bash
-      env:
-        GMAP_KEY: ${{secrets.GMAPAPI}}
+jobs:
+  my-job:
+    name: My Job
+    runs-on: ubuntu-latest
+    steps:
+      - run: ' sed -i "s/TOKEN/${{secrets.GMAPAPI}}/g" "test.js"'
+        shell: bash
+        env:
+          GMAP_KEY: ${{secrets.GMAPAPI}}
