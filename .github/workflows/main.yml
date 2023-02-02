@@ -2,10 +2,10 @@ name: Hello world action
 on: push
 jobs:
   my-job:
-    - name: My Job
-      runs-on: ubuntu-latest
-      permissions: write-all
-      steps:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+      - name: My Job
         shell: bash
         env:
           GMAP_KEY: ${{secrets.GMAPAPI}}
