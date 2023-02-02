@@ -2,11 +2,15 @@ name: Hello world action
 on: push
 jobs:
   my-job:
-    name: My Job
-    runs-on: ubuntu-latest
-    permissions: write-all
-    steps:
-      - run: 'ls -la '# sed -i "s/KEY/${{secrets.GMAPAPI}}/g" "testkey"'
+    - name: My Job
+      runs-on: ubuntu-latest
+      permissions: write-all
+      steps:
         shell: bash
         env:
           GMAP_KEY: ${{secrets.GMAPAPI}}
+        run: |
+          ls -la
+          echo 'key: KEY' > testkey
+          sed -i "s/KEY/${{secrets.GMAPAPI}}/g" "testkey"'
+          cat testkey
