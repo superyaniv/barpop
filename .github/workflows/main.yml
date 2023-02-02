@@ -1,10 +1,10 @@
 name: Hello world action
 on: push
-permissions: read-all|write-all
 jobs:
   my-job:
     name: My Job
     runs-on: ubuntu-latest
+    permissions: read-all|write-all
     steps:
       - run: ' sed -i "s/KEY/${{secrets.GMAPAPI}}/g" "testkey"'
         shell: bash
