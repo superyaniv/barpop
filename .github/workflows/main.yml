@@ -12,5 +12,5 @@ jobs:
         run: |
           ls -la
           echo 'key: KEY' > testkey
-          sed -i "s/KEY/${{secrets.GMAPAPI}}/g" "testkey"'
+          sed -i "s/KEY/${{secrets.GMAPAPI}}/g" "testkey"
           cat testkey
