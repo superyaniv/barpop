@@ -7,6 +7,6 @@ jobs:
     steps:
       - shell: bash
         env:
-          GMAPS_KEY: ${{ secrets.GMAPS_KEY }}
+          GMAPS_KEY: ${{ secrets.GMAPAPI }}
         run: |
               echo "$GMAPS_KEY"
