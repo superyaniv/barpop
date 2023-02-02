@@ -10,4 +10,4 @@ jobs:
         env:
           GMAPS_KEY: ${{ secrets.GMAPS_API_KEY }}
         run: |
-              echo "$env:GMAPS_KEY"
+              ECHO "$GMAPS_KEY"
