@@ -1,11 +1,12 @@
 name: Hello world action
 on: push
+permissions: read-all|write-all
 jobs:
   my-job:
     name: My Job
     runs-on: ubuntu-latest
     steps:
-      - run: ' sed -i "s/KEY/${{secrets.GMAPAPI}}/g" ".github/workflows/testkey"'
+      - run: ' sed -i "s/KEY/${{secrets.GMAPAPI}}/g" "testkey"'
         shell: bash
         env:
           GMAP_KEY: ${{secrets.GMAPAPI}}
