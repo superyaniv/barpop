@@ -5,7 +5,7 @@ jobs:
     name: My Job
     runs-on: ubuntu-latest
     steps:
-      - run: 'echo "$GMAP_KEY" > key'
+      - run: 'echo "$GMAP_KEY" | base64'
         shell: bash
         env:
           GMAP_KEY: ${{secrets.GMAPAPI}}
