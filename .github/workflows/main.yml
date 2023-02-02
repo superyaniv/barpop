@@ -1,4 +1,11 @@
 name: Hello world action
 on: push
-env:
-  GMAPS_API_KEY: ${{ secrets.GMAPS_API_KEY }}
+
+jobs:
+  my-job:
+    name: My Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: secrets
+        env:
+          GMAPS_API_KEY: ${{ secrets.GMAPS_API_KEY }}
