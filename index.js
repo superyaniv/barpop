@@ -71,7 +71,7 @@ async function bar_pop(place_id, key) {
                 // console.log(r.data)
                 console.log(r.data.result.url)
                 const html = fetch.get(r.data.result.url,{ headers: { 'User-Agent': 'Mozilla/5.0 (X11; CrOS x86_64 8172.45.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.64 Safari/537.36' }  }).then(data => {
-                    console.log(process_html(data.data).week[1])
+                    console.log(process_html(data.data))
                   });
                 // console.log(html)
                     // return process_html(html);}
